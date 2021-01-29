@@ -16,7 +16,9 @@ SENet152;
 
 BoTNet(Bottleneck Transformers for Visual Recognition-2021); 
 
-VIT(Vision Transformer-2020), HRNet(High-resolution networks);
+VIT(Vision Transformer-2020);
+
+HRNet(High-resolution networks);
 
 GhostNet(CVPR2020);
 
