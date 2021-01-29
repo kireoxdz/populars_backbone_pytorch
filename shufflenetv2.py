@@ -188,6 +188,5 @@ if __name__ == "__main__":
     model = shufflenet_v2_x1_0()
     input = torch.randn(1, 3, 512, 512)
 
-    output, o1 = model(input)
-    print(o1.shape)
-    # print(output.size())
+    output= model(input)
+    print(output.shape)
