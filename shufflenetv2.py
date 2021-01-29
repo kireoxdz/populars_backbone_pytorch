@@ -161,7 +161,7 @@ class ShuffleNetV2(nn.Module):
 def shufflenet_v2_x0_5(pretrained=True):
     model = ShuffleNetV2([4, 8, 4], [24, 48, 96, 192, 1024])
     if pretrained:
-        model.load_state_dict(torch.load('/Users/xudezhong-mac/Downloads/Github文件下载/kp_heatmap_train/pth/shufflenetv2_x0.5.pth'), strict=False)
+        model.load_state_dict(torch.load('./pth/shufflenetv2_x0.5.pth'), strict=False)
 
     return model
 
@@ -169,7 +169,7 @@ def shufflenet_v2_x0_5(pretrained=True):
 def shufflenet_v2_x1_0(pretrained=True):
     model = ShuffleNetV2([4, 8, 4], [24, 116, 232, 464, 1024])
     if pretrained:
-        model.load_state_dict(torch.load('/Users/xudezhong-mac/Downloads/Github文件下载/kp_heatmap_train/pth/shufflenetv2_x1.pth'), strict=False)
+        model.load_state_dict(torch.load('./pth/shufflenetv2_x1.pth'), strict=False)
 
     return model
 
