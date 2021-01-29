@@ -250,7 +250,7 @@ class Transformer(nn.Module):
 
 
 #=============================================================================================
-''' 主网络 '''
+''' 主网络: Vision Transformer '''
 class VisionTransformer(nn.Module):
     '''
     Vision Transformer is the complete end to end model architecture which combines all the above modules
