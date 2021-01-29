@@ -5,4 +5,6 @@
 
 目前包含模型：ResNet50, NasNetlarge, shuffleNetV2, mobileNetV2, SENet152, BoTNet(Bottleneck Transformers for Visual Recognition), VIT(Vision Transformer), HRNet(High-resolution networks)
 
+随时更新;
+
 仅供学习参考；
