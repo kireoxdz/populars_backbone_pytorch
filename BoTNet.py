@@ -103,22 +103,22 @@ class ResNetBase(nn.Module):
             self.layer3 = pretrained_model.layer3
             self.layer4 = self._make_layer(block, 512, num_blocks[3], stride=2, mhsa=True)
 
-        # Lateral layers --- resnet50之后
-        self.latlayer1 = nn.Conv2d(2048, 256, kernel_size=1, stride=1, padding=0)
-        self.latlayer2 = nn.Conv2d(1024, 256, kernel_size=1, stride=1, padding=0)
-        self.latlayer3 = nn.Conv2d(512, 256, kernel_size=1, stride=1, padding=0)
-        self.latlayer4 = nn.Conv2d(256, 256, kernel_size=1, stride=1, padding=0)
+#         # Lateral layers --- resnet50之后
+#         self.latlayer1 = nn.Conv2d(2048, 256, kernel_size=1, stride=1, padding=0)
+#         self.latlayer2 = nn.Conv2d(1024, 256, kernel_size=1, stride=1, padding=0)
+#         self.latlayer3 = nn.Conv2d(512, 256, kernel_size=1, stride=1, padding=0)
+#         self.latlayer4 = nn.Conv2d(256, 256, kernel_size=1, stride=1, padding=0)
 
-        # # Lateral layers --- resnet18,34
-        # self.latlayer1 = nn.Conv2d(512, 256, kernel_size=1, stride=1, padding=0)
-        # self.latlayer2 = nn.Conv2d(256, 256, kernel_size=1, stride=1, padding=0)
-        # self.latlayer3 = nn.Conv2d(128, 256, kernel_size=1, stride=1, padding=0)
-        # self.latlayer4 = nn.Conv2d(64, 256, kernel_size=1, stride=1, padding=0)
+#         # # Lateral layers --- resnet18,34
+#         # self.latlayer1 = nn.Conv2d(512, 256, kernel_size=1, stride=1, padding=0)
+#         # self.latlayer2 = nn.Conv2d(256, 256, kernel_size=1, stride=1, padding=0)
+#         # self.latlayer3 = nn.Conv2d(128, 256, kernel_size=1, stride=1, padding=0)
+#         # self.latlayer4 = nn.Conv2d(64, 256, kernel_size=1, stride=1, padding=0)
 
-        # Top-down layers
-        self.toplayer1 = nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=1)
-        self.toplayer2 = nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=1)
-        self.toplayer3 = nn.Conv2d(256, 4, kernel_size=3, stride=1, padding=1)
+#         # Top-down layers
+#         self.toplayer1 = nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=1)
+#         self.toplayer2 = nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=1)
+#         self.toplayer3 = nn.Conv2d(256, 4, kernel_size=3, stride=1, padding=1)
 
     def _make_layer(self, block, planes, num_blocks, stride, mhsa=False):
         strides = [stride] + [1]*(num_blocks-1)
