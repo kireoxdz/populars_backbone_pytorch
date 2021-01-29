@@ -192,7 +192,7 @@ def mobilenet_v2(pretrained=True):
     model = MobileNetV2()
     if pretrained:
         ''' 加载网络 '''
-        model.load_state_dict(torch.load('/Users/xudezhong-mac/Downloads/Github文件下载/kp_heatmap_train/pth/mobilenet_v2.pth'), strict=False)
+        model.load_state_dict(torch.load('./pth/mobilenet_v2.pth'), strict=False)
     return model
 
 if __name__ == "__main__":
