@@ -53,23 +53,6 @@ class ResNetBase(nn.Module):
             self.layer3 = pretrained_model.layer3
             self.layer4 = pretrained_model.layer4
 
-        # Lateral layers --- resnet50之后
-        self.latlayer1 = nn.Conv2d(2048, 256, kernel_size=1, stride=1, padding=0)
-        self.latlayer2 = nn.Conv2d(1024, 256, kernel_size=1, stride=1, padding=0)
-        self.latlayer3 = nn.Conv2d(512, 256, kernel_size=1, stride=1, padding=0)
-        self.latlayer4 = nn.Conv2d(256, 256, kernel_size=1, stride=1, padding=0)
-
-        # # Lateral layers --- resnet18,34
-        # self.latlayer1 = nn.Conv2d(512, 256, kernel_size=1, stride=1, padding=0)
-        # self.latlayer2 = nn.Conv2d(256, 256, kernel_size=1, stride=1, padding=0)
-        # self.latlayer3 = nn.Conv2d(128, 256, kernel_size=1, stride=1, padding=0)
-        # self.latlayer4 = nn.Conv2d(64, 256, kernel_size=1, stride=1, padding=0)
-
-        # Top-down layers
-        self.toplayer1 = nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=1)
-        self.toplayer2 = nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=1)
-        self.toplayer3 = nn.Conv2d(256, 4, kernel_size=3, stride=1, padding=1)
-
     def _make_layer(self, block, planes, num_blocks, stride):
         strides = [stride] + [1]*(num_blocks-1)
         layers = []
@@ -77,11 +60,6 @@ class ResNetBase(nn.Module):
             layers.append(block(self.in_planes, planes, stride))
             self.in_planes = planes * block.expansion
         return nn.Sequential(*layers)
-
-    def _upsample_add(self, x, y):
-        _,_,H,W = y.size()
-        ## return F.upsample(x, size=(H,W), mode='bilinear') + y
-        return F.interpolate(x, size=(H, W), mode='bilinear', align_corners=False) + y
 
     def forward(self, x):
         # Bottom-up
@@ -95,21 +73,6 @@ class ResNetBase(nn.Module):
         c5 = self.layer4(c4) ### [b, 2048, 16, 32]  ## 若是18则换成[b, 512, 16, 32]
 
         return c5
-
-        # # Top-down -- decoder
-        # p5 = self.latlayer1(c5)
-        # p4 = self._upsample_add(p5, self.latlayer2(c4))
-        # p4 = self.toplayer1(p4)
-        #
-        # p3 = self._upsample_add(p4, self.latlayer3(c3))
-        # p3 = self.toplayer2(p3)
-        #
-        #
-        # c2up = F.upsample(c2, size=(512, 1024), mode='bilinear')
-        # p2_in = self._upsample_add(p3, self.latlayer4(c2up))
-        # p2 = self.toplayer3(p2_in)
-        #
-        # return p2, p3, p4, p5
 
 
 def ResNet50(pretrained=False):
