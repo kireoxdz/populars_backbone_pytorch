@@ -1,1 +1,2 @@
 # populars_backbone_pytorch
+参考了部分开源代码，上传了一些常用的网络架构
