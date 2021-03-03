@@ -52,6 +52,9 @@ class ResNetBase(nn.Module):
             self.layer2 = pretrained_model.layer2
             self.layer3 = pretrained_model.layer3
             self.layer4 = pretrained_model.layer4
+        
+#         self.avgpool = nn.AvgPool2d(7, stride=1)
+#         self.fc = nn.Linear(512 * 16, 2)
 
     def _make_layer(self, block, planes, num_blocks, stride):
         strides = [stride] + [1]*(num_blocks-1)
@@ -71,6 +74,10 @@ class ResNetBase(nn.Module):
         c3 = self.layer2(c2) ### [b, 512, 64, 128]  ## 若是18则换成[b, 128, 16, 32]
         c4 = self.layer3(c3) ### [b, 1024, 32, 64]  ## 若是18则换成[b, 256, 16, 32]
         c5 = self.layer4(c4) ### [b, 2048, 16, 32]  ## 若是18则换成[b, 512, 16, 32]
+        
+#         x = self.avgpool(c5)
+#         x = x.view(x.size(0), -1)
+#         cls = self.fc(x)
 
         return c5
 
