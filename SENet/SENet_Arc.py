@@ -34,9 +34,9 @@ class Bottleneck(nn.Module):
         return out
 
 
-class SElNet(nn.Module):
+class SENet(nn.Module):
     def __init__(self, pretrained=True):
-        super(SElNet, self).__init__()
+        super(SENet, self).__init__()
 
         if pretrained:
 
@@ -71,6 +71,6 @@ class SElNet(nn.Module):
 if __name__ == '__main__':
 
     input = torch.randn(1, 3, 512, 512)
-    net = SElNet(pretrained=True)
+    net = SENet(pretrained=True)
     out = net(input)
     print(out.shape)
